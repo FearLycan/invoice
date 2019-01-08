@@ -110,7 +110,7 @@ class Item extends \yii\db\ActiveRecord
 
     public function calculateNetto()
     {
-        return ((100 - $this->vat) * $this->brutto) / 100;
+        return $this->brutto - (($this->brutto * $this->vat) / (100 + $this->vat));
     }
 
     public function beforeSave($insert)
